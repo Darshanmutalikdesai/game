@@ -1,0 +1,49 @@
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: system-ui, Segoe UI, Arial, sans-serif; }
+.hud { position: fixed; inset: 0; pointer-events: none; color: #fff; text-shadow: 0 2px 6px #000; }
+.mission { position: absolute; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 4px; background: rgba(0,0,0,.45); padding: 10px 16px; border-left: 4px solid #ffd24d; }
+.mission b { color: #ffd24d; font-size: 12px; letter-spacing: 2px; }
+.mission { max-width: min(430px, 90vw); }
+.mission span { font-size: 14px; }
+.mission em { font-style: normal; font-size: 13px; color: #ffd24d; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.chips i { font-style: normal; font-size: 10px; letter-spacing: 1px; padding: 2px 7px; border-radius: 10px; background: rgba(255,255,255,.1); color: #9a9da6; }
+.chips i.on { background: var(--c); color: #000; text-shadow: none; font-weight: 700; }
+.chips i.now { outline: 1px solid var(--c); color: #fff; }
+.banner { position: absolute; top: 22%; left: 50%; transform: translateX(-50%); font-size: clamp(18px, 3.4vw, 34px); font-weight: 800; letter-spacing: 3px; white-space: nowrap; padding: 12px 28px; background: rgba(0,0,0,.7); border: 2px solid #ffd24d; border-radius: 8px; animation: pop .45s ease-out; }
+@keyframes pop { from { transform: translateX(-50%) scale(.6); opacity: 0; } to { transform: translateX(-50%) scale(1); opacity: 1; } }
+.skip { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); pointer-events: auto; color: #fff; font-size: 13px; background: rgba(0,0,0,.45); padding: 8px 14px; border-radius: 20px; text-decoration: none; }
+.mini { position: absolute; left: 20px; bottom: 20px; width: 150px; height: 150px; border-radius: 50%; border: 3px solid #fff; background: rgba(10,10,20,.65); }
+.speed { position: absolute; right: 24px; bottom: 20px; text-align: right; }
+.speed span { font-size: 56px; font-weight: 800; font-style: italic; }
+.speed small { margin-left: 6px; opacity: .8; }
+.keys { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); font-size: 12px; opacity: .7; white-space: nowrap; }
+.prompt { position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,.7); padding: 12px 24px; border: 2px solid; border-radius: 8px; font-size: 18px; }
+.panel { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(520px, 90vw); max-height: 80vh; overflow: auto; pointer-events: auto; background: rgba(12,12,20,.92); border: 2px solid; border-radius: 12px; padding: 24px; text-shadow: none; }
+.panel h2 { margin: 0 0 14px; letter-spacing: 3px; }
+.panel h3 { margin: 0 0 2px; font-size: 17px; }
+.panel p { white-space: pre-line; margin: 0 0 14px; opacity: .8; font-size: 14px; }
+.panel a { color: #fff; }
+.bar { height: 8px; background: #333; border-radius: 4px; margin: -6px 0 14px; overflow: hidden; }
+.bar i { display: block; height: 100%; }
+.panel button { background: #fff; color: #000; border: 0; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+@media (max-width: 700px) { .keys { display: none; } .mini { width: 110px; height: 110px; } }
+
+/* ---- MISSION PASSED screen ---- */
+.passed { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0,0,0,.25), rgba(0,0,0,.75)); animation: pfade 6s ease-in-out forwards; display: flex; align-items: center; justify-content: center; }
+.passed .bar { position: absolute; left: 0; right: 0; height: 12vh; background: #000; }
+.passed .bar.top { top: 0; } .passed .bar.bot { bottom: 0; }
+.pwrap { text-align: center; padding: 0 16px; }
+.passed h1 { margin: 0; font-size: clamp(44px, 10vw, 128px); font-style: italic; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; line-height: 1;
+  background: linear-gradient(#fff3b0, #ffc400 55%, #b86e00); -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 2px rgba(0,0,0,.55); filter: drop-shadow(0 6px 0 rgba(0,0,0,.6)) drop-shadow(0 0 28px rgba(255,190,0,.45)); animation: pslam .7s cubic-bezier(.2,1.4,.4,1) both; }
+.passed h2 { margin: 18px 0 6px; font-size: clamp(16px, 2.6vw, 30px); letter-spacing: 6px; color: #fff; animation: prise .8s .5s both; }
+.passed p { margin: 0 0 16px; opacity: .85; letter-spacing: 2px; animation: prise .8s .7s both; }
+.pchips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; animation: prise .8s .9s both; }
+.pchips i { font-style: normal; font-weight: 700; font-size: 12px; letter-spacing: 1px; color: #000; text-shadow: none; padding: 4px 10px; border-radius: 12px; }
+@keyframes pfade { 0% { opacity: 0; } 8% { opacity: 1; } 88% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes pslam { from { transform: scale(2.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes prise { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.musicbtn { position: absolute; top: 20px; right: 20px; pointer-events: auto; cursor: pointer; background: rgba(0,0,0,.55); color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 20px; padding: 8px 14px; font-size: 12px; letter-spacing: 1px; font-weight: 700; text-shadow: none; }
+.musicbtn:hover { background: rgba(255,255,255,.18); } .musicbtn small { opacity: .6; font-weight: 400; }
